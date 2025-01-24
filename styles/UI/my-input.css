@@ -1,0 +1,15 @@
+.my-input {
+    padding: 20px;
+    font-family: "SuisseIntl";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -.02em;
+    color: #000;
+    border-radius: 100px;
+    background: #FFF;
+    width: 100%;
+}
+.my-input::placeholder {
+    color: #A3A3A3;
+}

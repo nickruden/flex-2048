@@ -9,6 +9,13 @@
 }
 
 @font-face {
+    font-family: "Inter";  
+    src: url("../assets/fonts/Inter/Inter-SemiBoldItalic.otf") format("opentype"); 
+    font-style: italic; 
+    font-weight: 600;
+}
+
+@font-face {
     font-family: "SuisseIntl";  
     src: url("../assets/fonts/SuisseIntl/SuisseIntl-Regular.otf") format("opentype"),
     url("../assets/fonts/SuisseIntl/_SuisseIntl-Regular.otf") format("opentype"); 
@@ -123,6 +130,10 @@ button {
 .main {
     flex: 1 0 auto;
     overflow-x: hidden;
+}
+
+.main > *:first-child > * {
+    overflow: visible;
 }
 
 .overlay {

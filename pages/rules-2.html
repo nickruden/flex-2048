@@ -3,9 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Flex2048</title>
+
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/components/header.css">
+    <link rel="stylesheet" href="../styles/components/desktop-block.css">
+    <link rel="stylesheet" href="../styles/components/game/tile.css">
+    <link rel="stylesheet" href="../styles/UI/my-button.css">
+
+    <link rel="stylesheet" href="../styles/pages/rules-2.css">
 </head>
 <body>
-    
+    <div class="wrapper --colored-bg">
+        <div class="header">
+            <div class="my-container header__container">
+                <a href="../index.html" class="header__logo-link">
+                    <div class="header__logo-wrap-img">
+                        <img src="../assets/images/logo.svg" alt="" class="logo-img">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ЗАГЛУШКА ДЛЯ ПК -->
+        <div class="desktop-block">
+            <div class="my-container desktop-block__container">
+                <img src="./assets/images/logo.svg" alt="" class="desktop-block__logo">
+                <div class="desktop-block__text">
+                    Сайт доступен для мобильной версии <br> Откройте сайт на телефоне
+                </div>
+                <div class="desktop-block__icon-wrap">
+                    <img src="../assets/images/desktop-icon.svg" alt="" class="desktop-block__icon">
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="rules-second-page">
+                <div class="my-container rules-second-page__container">
+                    <div class="rules-second-page__desc">Набери как можно больше очков! Ведь потом ты сможешь обменять их на классные подарки на свой новый абонемент.</div>
+                    <div class="rules-second-page__number">5’048</div>
+                    <a href="./form-page.html" class="my-button">далее</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

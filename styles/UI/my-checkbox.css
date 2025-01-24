@@ -1,0 +1,38 @@
+.my-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.my-checkbox__old {
+    display: none;
+}
+.my-checkbox__new {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    border: 1px solid #FCFCFC;
+    border-radius: 2px;
+    position: relative;
+}
+.my-checkbox__old:checked + .my-checkbox__new {
+    background: #FCFCFC;
+}
+.my-checkbox__old:checked + .my-checkbox__new::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 9px;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -58%) rotate(45deg);
+}
+.my-checkbox__text {
+    font-family: 'SuisseIntl';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #FCFCFC;
+}

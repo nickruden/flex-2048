@@ -1,0 +1,36 @@
+.my-select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.my-select__element {
+    padding: 20px;
+    font-family: "SuisseIntl";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -.02em;
+    color: #A3A3A3;
+    border-radius: 100px;
+    width: 100%;
+    background: #FCFCFC;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    padding-right: 30px;
+}
+.my-select__option {
+    color: #A3A3A3;
+}
+.my-select-arrow {
+    position: absolute;
+    top: 50%;
+    right: 22px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid #343537
+}

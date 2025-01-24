@@ -1,0 +1,62 @@
+.tile {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    background-color: #F5F5F5;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+.tile[data-value="2"] {
+    background-color: #F6E2EF;
+}
+.tile[data-value="4"] {
+    background-color: #F7D0E8;
+}
+.tile[data-value="8"] {
+    background-color: #FBBBE3;
+}
+.tile[data-value="16"] {
+    background-color: #FCA9DD;
+}
+.tile[data-value="32"] {
+    background-color: #FD96D7;
+}
+.tile[data-value="64"] {
+    background-color: #FF83D1;
+}
+.tile[data-value="128"] {
+    background-color: #FF83D1;
+}
+.tile[data-value="256"] {
+    background-color: #ED86E0;
+}
+.tile[data-value="512"] {
+    background-color: #DB8AF0;
+}
+.tile[data-value="1024"] {
+    background-color: #D38BF7;
+}
+.tile[data-value="2048"] {
+    background-color: #CA8DFF;
+}
+.tile-move-up {
+    transform: translateY(-100%);
+}
+
+.tile-move-down {
+    transform: translateY(100%);
+}
+
+.tile-move-left {
+    transform: translateX(-100%);
+}
+
+.tile-move-right {
+    transform: translateX(100%);
+}

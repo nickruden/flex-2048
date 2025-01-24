@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex2048</title>
+
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/components/header.css">
+    <link rel="stylesheet" href="../styles/components/desktop-block.css">
+    <link rel="stylesheet" href="../styles/components/game/tile.css">
+    <link rel="stylesheet" href="../styles/UI/my-button.css">
+    <link rel="stylesheet" href="../styles/UI/my-select.css">
+    <link rel="stylesheet" href="../styles/UI/my-checkbox.css">
+    <link rel="stylesheet" href="../styles/UI/my-input.css">
+
+    <link rel="stylesheet" href="../styles/pages/form-page.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="my-container header__container">
+                <a href="../index.html" class="header__logo-link">
+                    <div class="header__logo-wrap-img">
+                        <img src="../assets/images/logo.svg" alt="" class="logo-img">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ЗАГЛУШКА ДЛЯ ПК -->
+        <div class="desktop-block">
+            <div class="my-container desktop-block__container">
+                <img src="./assets/images/logo.svg" alt="" class="desktop-block__logo">
+                <div class="desktop-block__text">
+                    Сайт доступен для мобильной версии <br> Откройте сайт на телефоне
+                </div>
+                <div class="desktop-block__icon-wrap">
+                    <img src="../assets/images/desktop-icon.svg" alt="" class="desktop-block__icon">
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="form-page">
+                <div class="my-container form-page__container">
+                    <div class="form-page__texts">
+                        <div class="form-page__title">Отлично, осталось только авторизоваться</div>
+                        <div class="form-page__pre-title">Чтобы мы знали, кому отправить подарки.</div>
+                    </div>
+                    <form action="" class="form-page__form">
+                        <input type="text" name="" id="" class="my-input" placeholder="Имя">
+                        <input type="tel" name="" id="" class="my-input" placeholder="Телефон">
+                        <div class="my-select-wrapper">
+                            <select name="userCity" id="userCity" class="my-select__element">
+                                <option class="my-select__option" value="irkutsk" default>Иркутск</option>
+                                <option class="my-select__option" value="angarsk">Ангарск</option>
+                                <option class="my-select__option" value="krasnoyarskVesni">Красноярск. Весны</option>
+                                <option class="my-select__option" value="krasnoyarskUritskogo">Красноярск. Урицкого</option>
+                                <option class="my-select__option" value="novosibirskZyryanovskaya">Новосибирск. Зыряновская</option>
+                                <option class="my-select__option" value="novosibirskDusi">Новосибирск. Дуси</option>
+                                <option class="my-select__option" value="tyumen">Тюмень</option>
+                                <option class="my-select__option" value="saratov">Саратов</option>
+                                <option class="my-select__option" value="ekaterinburg">Екатеринбург</option>
+                                <option class="my-select__option" value="ufa">Уфа</option>
+                                <option class="my-select__option" value="chelyabinsk">Челябинск</option>
+                                <option class="my-select__option" value="kazan">Казань</option>
+                            </select>
+                            <div class="my-select-arrow"></div>
+                        </div>
+                        <label for="haveMembership" class="my-checkbox">
+                            <input type="checkbox" name="haveMembership" id="haveMembership" class="my-checkbox__old">
+                            <span class="my-checkbox__new"></span>
+                            <span class="my-checkbox__text">У меня есть абонемент THE FLEX</span>
+                        </label>
+                    </form>
+                    <a href="./game-page.html" class="my-button">далее</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

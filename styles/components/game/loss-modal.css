@@ -1,0 +1,43 @@
+.loss-modal {
+    display: none;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+.loss-modal__blur {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    filter: blur(10px);
+    z-index: 5;
+}
+.loss-modal__content {
+    padding: 32px 26px;
+    max-width: 317px;
+    border-radius: 10px;
+    background-color: #FFF;
+    position: relative;
+    z-index: 10;
+}
+.loss-modal__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+.loss-modal__text {
+    max-width: 265px;
+    color: #424242;
+    text-align: center;
+}
+.loss-modal__button {
+    max-width: 135px;
+}

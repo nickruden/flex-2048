@@ -1,0 +1,28 @@
+.win-page {
+    padding-top: 122px;
+    padding-bottom: 20px;
+}
+.win-page__container {
+}
+.win-page__title-texts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 118px;
+    text-align: center;
+}
+.win-page__text {
+    font-size: 18px;
+    max-width: 335px;
+    margin-bottom: 17.4px;
+}
+.win-page__pre-title {
+    margin-bottom: 0;
+}
+.win-page__title-number {
+    font-family: "Inter";
+    font-size: 80px;
+    font-weight: 600;
+    letter-spacing: .0em;
+    -webkit-text-stroke: 15px rgba(244, 244, 245, 0.2);
+}

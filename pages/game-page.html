@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex2048</title>
+
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/components/header.css">
+    <link rel="stylesheet" href="../styles/components/desktop-block.css">
+    <link rel="stylesheet" href="../styles/UI/my-button.css">
+    <link rel="stylesheet" href="../styles/components/game/tile.css">
+    <link rel="stylesheet" href="../styles/components/game/game-box.css">
+    <link rel="stylesheet" href="../styles/components/game/loss-modal.css">
+
+    <link rel="stylesheet" href="../styles/pages/game-page.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="my-container header__container">
+                <a href="../index.html" class="header__logo-link">
+                    <div class="header__logo-wrap-img">
+                        <img src="../assets/images/logo.svg" alt="" class="logo-img">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ЗАГЛУШКА ДЛЯ ПК -->
+        <div class="desktop-block">
+            <div class="my-container desktop-block__container">
+                <img src="./assets/images/logo.svg" alt="" class="desktop-block__logo">
+                <div class="desktop-block__text">
+                    Сайт доступен для мобильной версии <br> Откройте сайт на телефоне
+                </div>
+                <div class="desktop-block__icon-wrap">
+                    <img src="../assets/images/desktop-icon.svg" alt="" class="desktop-block__icon">
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="game-page">
+                <div class="my-container game-page__container">
+                    <div class="game-page__header">
+                        <div class="game-page__title">2048</div>
+                        <div class="game-page__score-wrap">
+                            <div class="game-page__score-title">счет</div>
+                            <div class="game-page__score-number" id="score">0</div>
+                        </div>
+                    </div>
+                    <div class="game-page__game-content">
+                        <div class="game-box" id="gameBox"></div>
+                        <div class="loss-modal">
+                            <div class="loss-modal__content">
+                                 <div class="loss-modal__container">
+                                     <div class="loss-modal__text">Упс, попробуй сыграть еще раз, чтобы набрать больше баллов!</div>
+                                     <button class="my-button loss-modal__button">играть</button>
+                                 </div>
+                             </div>
+                             <div class="loss-modal__blur"></div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="../assets/scripts/game.js"></script>
+</body>
+</html>

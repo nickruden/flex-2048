@@ -1,0 +1,37 @@
+.rules-first-page {
+    padding-top: 56px;
+    padding-bottom: 20px;
+}
+.rules-first-page__container {
+}
+.rules-first-page__desc {
+    font-weight: 300;
+    max-width: 286px;
+    text-align: center;
+    margin-bottom: 43.4px;
+}
+.rules-first-page__example {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 282px;
+    max-height: 190px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 72px;
+}
+.rules-first-page__example-tile {
+    max-width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    background-color: #EDEFEC;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1 1 calc(33.333% - 10px);
+}

@@ -11,7 +11,7 @@
     left: 50%;
     transform: translateX(-50%);
     width: 230px;
-    height: 180px;
+    height: 195px;
 }
 
 .header {
@@ -21,14 +21,13 @@
 .main {
 }
 .main-page {
-    padding-top: 164px;
+    padding-top: 160px;
     padding-bottom: 20px;
 }
 .main-page__container {
-    overflow: visible;
 }
 .main-page__title {
-    margin-bottom: 45px;
+    margin-bottom: 41.4px;
     display: flex;
     flex-direction: column;
     align-items: center;

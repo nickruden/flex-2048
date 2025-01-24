@@ -1,0 +1,30 @@
+.form-page {
+    padding-top: 56px;
+    padding-bottom: 20px;
+}
+.form-page__container {
+}
+.form-page__texts {
+    align-self: baseline;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.form-page__title {
+    max-width: 289px;
+    font-size: 23px;
+    font-weight: 500;
+}
+.form-page__pre-title {
+    font-size: 12px;
+    margin-bottom: 28px;
+}
+.form-page__form {
+    margin-bottom: 39.4px;
+}
+.form-page__form >*:not(:last-child):not(.my-select-wrapper) {
+    margin-bottom: 10px;
+}
+.my-select-wrapper {
+    margin-bottom: 24px;
+}
