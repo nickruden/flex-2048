@@ -1,0 +1,58 @@
+.wrapper {
+    position: relative;
+}
+.wrapper::after {
+    content: '';
+    background: url('../../assets/images/main/numbers-img.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: -23px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 230px;
+    height: 180px;
+}
+
+.header {
+    padding-top: 37px;
+}
+
+.main {
+}
+.main-page {
+    padding-top: 164px;
+    padding-bottom: 20px;
+}
+.main-page__container {
+    overflow: visible;
+}
+.main-page__title {
+    margin-bottom: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #F4F4F5;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    font-weight: 600;
+}
+.main-page__title-top-text {
+    position: absolute;
+    top: -20px;
+    font-size: 35px;
+    -webkit-text-stroke: 7px rgba(244, 244, 245, 0.2);
+}
+.main-page__title-main-text {
+    font-size: 105px;
+    -webkit-text-stroke: 17px rgba(244, 244, 245, 0.2);
+}
+.main-page__text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #F5F5F5;
+    text-align: center;
+    max-width: 307px;
+    margin-bottom: 62px;
+}

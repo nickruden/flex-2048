@@ -1,0 +1,16 @@
+.my-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "SuisseIntl";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 100%;
+    letter-spacing: -.01em;
+    max-width: 335px;
+    width: 100%;
+    background: linear-gradient(194deg, #CA8DFF 0%, #ff83f0 100%);
+    padding: 21px 20px;
+    box-shadow: 0px 6px 20px 0px rgba(32, 32, 32, 0.15);
+    border-radius: 100px;
+}
