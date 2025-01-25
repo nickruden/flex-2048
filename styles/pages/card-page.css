@@ -22,7 +22,6 @@
     padding: 20px 23px;
     border-radius: 14px;
     background: linear-gradient(129deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 100%);
-    filter: blur(2px);
     z-index: 2;
 }
 .card-page__main-card-inner {

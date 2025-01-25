@@ -42,6 +42,14 @@ function addRandomTile() {
     if (emptyTiles.length > 0) {
         const { row, col } = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
         tiles[row][col].value = Math.random() < 0.9 ? 2 : 4;
+
+        // Добавляем класс для анимации появления
+        tiles[row][col].element.classList.add("new-tile");
+
+        // Убираем класс после завершения анимации
+        setTimeout(() => {
+            tiles[row][col].element.classList.remove("new-tile");
+        }, 200); // 200ms — длительность анимации
     }
 }
 

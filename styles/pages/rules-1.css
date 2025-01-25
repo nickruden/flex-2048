@@ -23,6 +23,7 @@
     margin-bottom: 72px;
 }
 .rules-first-page__example .tile {
+    position: relative;
     max-width: 80px;
     height: 80px;
 }
