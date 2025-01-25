@@ -15,11 +15,16 @@
     flex-wrap: wrap;
     gap: 10px;
     max-width: 282px;
+    width: 100%;
     max-height: 190px;
     padding: 10px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.2);
     margin-bottom: 72px;
+}
+.rules-first-page__example .tile {
+    max-width: 80px;
+    height: 80px;
 }
 .rules-first-page__example-tile {
     max-width: 80px;

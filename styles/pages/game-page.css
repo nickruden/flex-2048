@@ -45,3 +45,6 @@
     align-items: center;
     position: relative;
 }
+.game-page__game-content .tile {
+    flex: 1 1 calc(25% - 10px);
+}
