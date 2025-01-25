@@ -103,18 +103,14 @@ function moveTiles(direction) {
             } else {
                 tile = tiles[direction === "down" ? GRID_SIZE - 1 - j : i][direction === "right" ? GRID_SIZE - 1 - j : i];
             }
-            if (tile) {
-                rowOrCol.push(tile);
-            } else {
-                rowOrCol.push({ value: 0 });
-            }
+            rowOrCol.push(tile);
         }
         const newRowOrCol = slideAndMerge(rowOrCol);
         for (let j = 0; j < GRID_SIZE; j++) {
             const tile = direction === "left" || direction === "up"
                 ? tiles[direction === "up" ? j : i][direction === "left" ? j : i]
                 : tiles[direction === "down" ? GRID_SIZE - 1 - j : i][direction === "right" ? GRID_SIZE - 1 - j : i];
-            if (tile && tile.value !== newRowOrCol[j].value) {
+            if (tile.value !== newRowOrCol[j].value) {
                 tile.value = newRowOrCol[j].value;
                 moved = true;
             }
@@ -125,20 +121,32 @@ function moveTiles(direction) {
 
 // Слияние плиток
 function slideAndMerge(rowOrCol) {
-    let filtered = rowOrCol.filter(tile => tile && tile.value !== 0);
-    for (let i = 0; i < filtered.length - 1; i++) {
-        if (filtered[i].value === filtered[i + 1].value) {
-            filtered[i].value *= 2;
-            score += filtered[i].value; // Добавляем очки за слияние
+    // Фильтруем плитки, убирая пустые
+    let filtered = rowOrCol.filter(tile => tile.value !== 0);
+    let merged = []; // Массив для хранения результата слияния
+    let i = 0;
+
+    while (i < filtered.length) {
+        if (i < filtered.length - 1 && filtered[i].value === filtered[i + 1].value) {
+            // Если текущая плитка равна следующей, объединяем их
+            const mergedValue = filtered[i].value * 2;
+            merged.push({ value: mergedValue });
+            score += mergedValue; // Обновляем счёт только при слиянии
             updateScore();
-            filtered[i + 1].value = 0;
+            i += 2; // Пропускаем следующую плитку, так как она уже объединена
+        } else {
+            // Если слияния нет, просто добавляем плитку
+            merged.push({ value: filtered[i].value });
+            i += 1;
         }
     }
-    filtered = filtered.filter(tile => tile.value !== 0);
-    while (filtered.length < GRID_SIZE) {
-        filtered.push({ value: 0 });
+
+    // Заполняем оставшиеся клетки пустыми значениями
+    while (merged.length < GRID_SIZE) {
+        merged.push({ value: 0 });
     }
-    return filtered;
+
+    return merged;
 }
 
 // Обновление счёта
@@ -182,21 +190,52 @@ function resetGame() {
 function checkGameOver() {
     for (let row = 0; row < GRID_SIZE; row++) {
         for (let col = 0; col < GRID_SIZE; col++) {
-            if (tiles[row][col].value === 0) return; // Есть пустая клетка — игра продолжается
-            if (col < GRID_SIZE - 1 && tiles[row][col].value === tiles[row][col + 1].value) return; // Возможно слияние по горизонтали
-            if (row < GRID_SIZE - 1 && tiles[row][col].value === tiles[row + 1][col].value) return; // Возможно слияние по вертикали
+            if (tiles[row][col].value === 0) return { isGameOver: false, shouldShowModal: false }; // Есть пустая клетка — игра продолжается
+            if (col < GRID_SIZE - 1 && tiles[row][col].value === tiles[row][col + 1].value) return { isGameOver: false, shouldShowModal: false }; // Возможно слияние по горизонтали
+            if (row < GRID_SIZE - 1 && tiles[row][col].value === tiles[row + 1][col].value) return { isGameOver: false, shouldShowModal: false }; // Возможно слияние по вертикали
         }
     }
     // Если дошли сюда, значит, проигрыш
-    showLossModal();
+    const currentScore = scoreElement.textContent;
+    if (currentScore >= 1024) {
+        return { isGameOver: true, shouldShowModal: false }; // Переход на страницу победы
+    } else {
+        return { isGameOver: true, shouldShowModal: true }; // Показ модального окна проигрыша
+    }
 }
 
 // Проверка на лимит
 function checkWin() {
-    if (score >= 5048) {
-        window.location.href = "win-page.html"; 
+    console.log(scoreElement.textContent); // Для отладки
+    const currentScore = scoreElement.textContent; // Получаем текущий счёт как число
+
+    // Проверяем, достиг ли игрок 5048 очков
+    if (currentScore >= 5048) {
+        sessionStorage.removeItem("score");
+        sessionStorage.setItem("score", currentScore.toString()); // Сохраняем счёт в sessionStorage
+        window.location.href = "win-page.html"; // Переход на страницу победы
         return true;
     }
+
+    // Проверяем, закончились ли ходы
+    const gameOverResult = checkGameOver();
+    console.log(gameOverResult)
+    if (gameOverResult.isGameOver) {
+        if (currentScore >= 1024) {
+            // Переход на страницу победы
+            sessionStorage.removeItem("score");
+            sessionStorage.setItem("score", currentScore.toString()); // Сохраняем счёт в sessionStorage
+            window.location.href = "win-page.html"; // Переход на страницу победы
+            return true;
+        } else {
+            // Показ модального окна проигрыша
+            if (gameOverResult.shouldShowModal) {
+                showLossModal();
+            }
+            return false;
+        }
+    }
+
     return false; // Игра продолжается
 }
 

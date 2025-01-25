@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex2048</title>
+
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/components/header.css">
+    <link rel="stylesheet" href="../styles/components/desktop-block.css">
+    <link rel="stylesheet" href="../styles/UI/my-button.css">
+
+    <link rel="stylesheet" href="../styles/pages/card-page.css">
+</head>
+<body>
+    <div class="wrapper --colored-bg">
+        <div class="header">
+            <div class="my-container header__container">
+                <a href="../index.html" class="header__logo-link">
+                    <div class="header__logo-wrap-img">
+                        <img src="../assets/images/logo.svg" alt="" class="logo-img">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ЗАГЛУШКА ДЛЯ ПК -->
+        <div class="desktop-block">
+            <div class="my-container desktop-block__container">
+                <img src="./assets/images/logo.svg" alt="" class="desktop-block__logo">
+                <div class="desktop-block__text">
+                    Сайт доступен для мобильной версии <br> Откройте сайт на телефоне
+                </div>
+                <div class="desktop-block__icon-wrap">
+                    <img src="../assets/images/desktop-icon.svg" alt="" class="desktop-block__icon">
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="card-page">
+                <div class="my-container card-page__container">
+                    <div class="card-page__title">
+                        Это секретная карта в честь Кибер-понедельника.
+                    </div>
+                    <div class="card-page__cards">
+                        <div class="card-page__main-card">
+                            <div class="card-page__main-card-inner">
+                            <div class="card-page__main-card-title">Cyber Card</div>
+                            <div class="card-page__main-card-desc">
+                                <div class="card-page__main-card-text">10 мес</div>
+                                <div class="card-page__main-card-text">80 тренировок</div>
+                                <div class="card-page__main-card-text" id="cardPrice">
+                                    <div class="card-page__main-card-price-number">3990₽</div>
+                                    <div class="card-page__main-card-price-text">/мес</div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="card-page__pre-card">
+                            <div class="card-page__main-card-inner">
+                                <div class="card-page__pre-card-logo-wrap">
+                                    <img src="../assets/images/logo.svg" alt="" class="card-page__pre-card-logo-img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-page__lightning-wrap">
+                            <img src="../assets/images/lightning.svg" alt="" class="card-page__lightning-img">
+                        </div>
+                    </div>
+                    <div class="card-page__text">А теперь используй баллы, чтобы улучшить эту карту массажами, тренировками или дополнительной скидкой.</div>
+                    <a href="" class="my-button">далее</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

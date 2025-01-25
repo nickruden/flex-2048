@@ -11,7 +11,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    transition: transform 0.2s ease-in-out;
 }
 .tile[data-value="2"] {
     background-color: #F6E2EF;
@@ -46,18 +45,45 @@
 .tile[data-value="2048"] {
     background-color: #CA8DFF;
 }
-.tile-move-up {
-    transform: translateY(-100%);
+
+@keyframes appear {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
-.tile-move-down {
-    transform: translateY(100%);
+.tile.new-tile {
+    animation: appear 0.2s ease-in-out;
 }
 
-.tile-move-left {
-    transform: translateX(-100%);
+@keyframes merge {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
-.tile-move-right {
-    transform: translateX(100%);
+.tile.merge-tile {
+    animation: merge 0.2s ease-in-out;
+}
+
+@keyframes slide {
+    from {
+        transform: translate(var(--from-x, 0), var(--from-y, 0));
+    }
+    to {
+        transform: translate(0, 0);
+    }
+}
+
+.tile.sliding {
+    animation: slide 0.2s ease-in-out;
 }
