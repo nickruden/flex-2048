@@ -30,8 +30,8 @@
     height: var(--cell-size); */
     border-radius: 6px;
     font-weight: bold;
-    animation: show 300ms ease-in-out;
-    transition: 200ms ease-in-out;
+    animation: show 200ms ease-in-out;
+    transition: 150ms ease-in;
 }
 
 .cell {
@@ -41,7 +41,17 @@
     aspect-ratio: 1 / 1;
     background-color: #F5F5F5;
     border-radius: 6px;
-  }
+}
+
+@media (max-width: 374px) {
+    .tile {
+        max-width: 68px;
+    }
+
+    .cell {
+        max-width: 68px;
+    }
+}
 
 @keyframes show {
     0% {

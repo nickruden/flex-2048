@@ -7,13 +7,15 @@
 .card-page__title {
     text-align: center;
     max-width: 285px;
-    margin-bottom: 29px;
+    margin-bottom: 28.4px;
 }
 .card-page__cards {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    margin-bottom: 74px;
 }
 .card-page__main-card {
     max-width: 256px;
@@ -21,28 +23,82 @@
     height: 170px;
     padding: 20px 23px;
     border-radius: 14px;
-    background: linear-gradient(129deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0) 100%);
-    z-index: 2;
+    background: linear-gradient(129deg, rgba(255, 255, 255, 0.61), rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    position: relative;
+    overflow: hidden;
 }
 .card-page__main-card-inner {
     position: relative;
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+}
+.card-page__main-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 8;
+    height: 100%;
+    width: 100%;
+    background: url('../../assets/images/card-page/card-texture.png') no-repeat;
+    background-size: cover;
 }
 .card-page__main-card-title {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 110%;
+    letter-spacing: .0em;
+    -webkit-text-stroke: 6px rgba(244, 244, 245, 0.2);
+    margin-bottom: 27px;
 }
 .card-page__main-card-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
 }
 .card-page__main-card-text {
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
 }
 .card-page__main-card-price-number {
 }
 .card-page__main-card-price-text {
+    font-size: 8px;
+    font-weight: 500;
+    align-self: flex-end;
 }
 .card-page__pre-card {
+    position: absolute;
+    top: 31px;
+    left: 50px;
+    max-width: 256px;
+    width: 100%;
+    height: 170px;
+    padding: 20px 23px;
+    border-radius: 14px;
+    background: linear-gradient(129deg, rgba(255, 255, 255, 0.61), rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    transform: rotate(-10deg);
+}
+.card-page__pre-card-inner {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
 }
 .card-page__pre-card-logo-wrap {
+    max-width: 70px;
+    max-height: 10px;
 }
 .card-page__pre-card-logo-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 .card-page__lightning-wrap {
     display: flex;
@@ -53,6 +109,9 @@
     height: 79px;
     width: 79px;
     position: absolute;
+    bottom: -32px;
+    right: 43px;
+    z-index: 10;
 }
 .card-page__lightning-img {
     max-width: 31px;

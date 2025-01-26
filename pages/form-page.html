@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@
 
     <link rel="stylesheet" href="../styles/pages/form-page.css">
 </head>
+
 <body>
     <div class="wrapper">
         <div class="header">
@@ -49,15 +51,17 @@
                         <div class="form-page__pre-title">Чтобы мы знали, кому отправить подарки.</div>
                     </div>
                     <form action="" class="form-page__form">
-                        <input type="text" name="" id="" class="my-input" placeholder="Имя">
-                        <input type="tel" name="" id="" class="my-input" placeholder="Телефон">
+                        <input type="text" name="name-input" id="userName" class="my-input" placeholder="Имя">
+                        <input type="tel" name="phone-input" id="userPhone" class="my-input" placeholder="Телефон">
                         <div class="my-select-wrapper">
                             <select name="userCity" id="userCity" class="my-select__element">
                                 <option class="my-select__option" value="irkutsk" default>Иркутск</option>
                                 <option class="my-select__option" value="angarsk">Ангарск</option>
                                 <option class="my-select__option" value="krasnoyarskVesni">Красноярск. Весны</option>
-                                <option class="my-select__option" value="krasnoyarskUritskogo">Красноярск. Урицкого</option>
-                                <option class="my-select__option" value="novosibirskZyryanovskaya">Новосибирск. Зыряновская</option>
+                                <option class="my-select__option" value="krasnoyarskUritskogo">Красноярск. Урицкого
+                                </option>
+                                <option class="my-select__option" value="novosibirskZyryanovskaya">Новосибирск.
+                                    Зыряновская</option>
                                 <option class="my-select__option" value="novosibirskDusi">Новосибирск. Дуси</option>
                                 <option class="my-select__option" value="tyumen">Тюмень</option>
                                 <option class="my-select__option" value="saratov">Саратов</option>
@@ -74,10 +78,87 @@
                             <span class="my-checkbox__text">У меня есть абонемент THE FLEX</span>
                         </label>
                     </form>
-                    <a href="./game-page.html" class="my-button">далее</a>
+                    <a href="" class="my-button">далее</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="../assets/scripts/phone-mask.js"></script>
+
+    <script>
+        const form = document.querySelector('.form-page__form');
+        const nameInput = document.querySelector('#userName');
+
+        nameInput.addEventListener('input', function () {
+            validateName();
+        });
+
+        function validateName() {
+            const value = nameInput.value.trim();
+
+            const regex = /^[A-Za-zА-Яа-яЁё\s]+$/;
+
+            if ((!value) || (!regex.test(value))) {
+                nameInput.classList.add('error');
+                nameInput.placeholder = 'Введите правильно';
+                return false;
+            } else {
+                nameInput.classList.remove('error');
+                nameInput.placeholder = 'Имя';
+                return true;
+            }
+        }
+
+        document.querySelector('.my-button').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            if (!validateName()) {
+                return;
+            }
+
+            const userData = {
+                id: null,
+                name: form.querySelector('#userName').value,
+                phone: form.querySelector('#userPhone').value,
+                city: form.querySelector('#userCity').value,
+                hasMembership: form.querySelector('#haveMembership').checked,
+                score: null,
+            };
+
+            sessionStorage.setItem("userData", JSON.stringify(userData));
+
+            window.location.href = './game-page.html';
+
+            // fetch("https://flex.gromkov.ru/api/database/rows/table/602/?user_field_names=true", {
+            //     method: "POST",
+            //     headers: {
+            //         Authorization: "Token EsY3jhdUa4FMCo4GyW0alRmpFSZqjCed",
+            //         "Content-Type": "application/json"
+            //     },
+            //     body: JSON.stringify({ // Преобразуем объект в JSON
+            //         Name: userData.name,
+            //         Phone: userData.phone,
+            //         Card: userData.hasMembership,
+            //         City: userData.city,
+            //     })
+            // })
+            //     .then(response => {
+            //         console.log(response.data)
+            //         // const id = response.data.id;
+            //         // userData.id = id;
+
+            //         sessionStorage.setItem("userData", JSON.stringify(userData));
+            //         console.log(JSON.parse(sessionStorage.getItem("userData")));
+
+            //         // window.location.href = './game-page.html';
+            //     })
+            //     .catch(error => {
+            //         console.error('Ошибка при отправке данных:', error);
+            //         alert('Произошла ошибка при отправке данных. Пожалуйста, попробуйте еще раз.');
+            //     });
+        });
+    </script>
 </body>
+
 </html>

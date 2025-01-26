@@ -2,8 +2,9 @@ import { VirtualCell } from "./cell.js";
 
 const GRID_SIZE = 4;
 const CELLS_COUNT = GRID_SIZE * GRID_SIZE;
-const CELL_SIZE = 80;
 const CELL_GAP = 10;
+
+const CELL_SIZE = (window.innerWidth <= 374) ? 73 : 80;
 
 export class Grid {
   constructor(gridElement, updateScore, getScore, setScore) {

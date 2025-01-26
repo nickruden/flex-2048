@@ -61,7 +61,7 @@ function checkWinOrLose() {
         window.location.href = "win-page.html";
     } else if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
       // Проигрыш, если нет возможных ходов
-      if (score >= 1024) {
+      if (score >= 50) {
         sessionStorage.removeItem("score");
         sessionStorage.setItem("score", score);
         window.location.href = "win-page.html";

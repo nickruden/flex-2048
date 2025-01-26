@@ -48,3 +48,9 @@
 .game-page__game-content .tile {
     flex: 1 1 calc(25% - 10px);
 }
+
+@media (max-width: 374px) {
+    .game-page__game-content {
+        max-width: 338px;
+    }
+}

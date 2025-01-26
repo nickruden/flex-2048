@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
 
     <link rel="stylesheet" href="../styles/pages/win-page.css">
 </head>
+
 <body>
     <div class="wrapper --colored-bg">
         <div class="header">
@@ -42,11 +44,12 @@
             <div class="win-page">
                 <div class="my-container win-page__container">
                     <div class="win-page__title-texts">
-                        <div class="win-page__text win-page__pre-title">WOW! Ты набрала максимальное количество баллов.</div>
+                        <div class="win-page__text win-page__pre-title">WOW! Ты набрала максимальное количество баллов.
+                        </div>
                         <div class="win-page__title-number">5’048</div>
                     </div>
                     <div class="win-page__text">Давай перейдем к выбору подарков!</div>
-                    <a href="./card-page.html" class="my-button">далее</a>
+                    <a href="" class="my-button">далее</a>
                 </div>
             </div>
         </div>
@@ -54,21 +57,53 @@
 
     <script>
         const score = sessionStorage.getItem("score");
+        const userData = JSON.parse(sessionStorage.getItem("userData"));
+
         const titleNumber = document.querySelector(".win-page__title-number");
-        console.log(score);
+        
         titleNumber.textContent = score;
 
-    function checkWin() {
-        console.log(scoreElement.textContent)
-        if ((score >= 10 && isGameOver()) || (score >= 5048)) {
-            sessionStorage.removeItem("score");
-            sessionStorage.setItem("score", scoreElement.textContent);
-            window.location.href = "win-page.html";
-            return true;
-        }
-        
-        return false;
-    }
-</script>
+        userData.score = score;
+        sessionStorage.setItem("userData", JSON.stringify(userData));
+
+        console.log(JSON.parse(sessionStorage.getItem("userData")));
+
+        const rowId = userData.id;
+
+        // fetch(`https://flex.gromkov.ru/api/database/rows/table/602/${rowId}/?user_field_names=true`, {
+        //     method: "PATCH",
+        //     headers: {
+        //         Authorization: "Token EsY3jhdUa4FMCo4GyW0alRmpFSZqjCed",
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         Score: score
+        //     })
+        // })
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error("Ошибка при обновлении данных на сервере");
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         console.log("Данные успешно обновлены:", data);
+        //     })
+        //     .catch(error => {
+        //         console.error("Ошибка:", error);
+        //         alert("Произошла ошибка при обновлении данных. Пожалуйста, попробуйте еще раз.");
+        //     });
+
+        document.querySelector('.my-button').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            if (userData.hasMembership) {
+                window.location.href = './finalPage.html';
+            } else {
+                window.location.href = './card-page.html';
+            }
+        });
+    </script>
 </body>
+
 </html>
