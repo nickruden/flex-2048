@@ -1,0 +1,122 @@
+.final-page-1 {
+    padding-top: 44px;
+    padding-bottom: 20px;
+}
+.final-page-1.--membership-false {
+    padding-top: 28px;
+}
+.final-page-1__container {
+}
+.final-page-1__top {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 335px;
+}
+.final-page-1.--membership-false .final-page-1__top {
+    gap: 13px;
+}
+.final-page-1__title {
+    font-size: 20px;
+    text-align: center;
+}
+.final-page-1.--membership-false .final-page-1__title {
+    font-size: 18px;
+}
+.final-page-1__bonus-card {
+    padding: 23px 27px;
+    border-radius: 15px;
+    background: #FFF;
+    display: flex;
+    justify-content: space-between;
+}
+.final-page-1.--membership-false .final-page-1__bonus-card {
+    padding: 17px 20px;
+    justify-content: center;
+}
+.final-page-1__bonus-card-element {
+    color: #D997F7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.final-page-1__bonus-card-element-title {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -.01em;
+    margin-bottom: 2px;
+}
+.infinity-icon {
+    margin-bottom: 4px;
+}
+.final-page-1.--membership-false .final-page-1__bonus-card-element-title {
+    font-size: 25px;
+}
+.final-page-1__bonus-card-element-text {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: -.01em;
+}
+.final-page-1__bonuses {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 27.4px;
+}
+.final-page-1.--membership-false .final-page-1__bonuses {
+    margin-bottom: 22.4px;
+}
+.final-page-1__bonus {
+    padding: 10px 9px 0px 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    flex: 1 1 calc(33.333% - 10px);
+    max-width: 105px;
+    width: 100%;
+    height: 109px;
+}
+.final-page-1__bonus.checked {
+    background-color: #FFF;
+    color: rgba(219, 150, 245, 1);
+
+}
+.final-page-1__bonus.cant-checked {
+    opacity: 0.7;
+}
+.final-page-1__bonus-text {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -.01em;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.final-page-1__info {
+    display: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -.02em;
+    text-align: center;
+    max-width: 255px;
+    margin-bottom: 19px;
+}
+.final-page-1.--membership-false .final-page-1__info {
+    display: block;
+}
+.final-page-1__bonus-button {
+    padding: 9px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    width: calc(100% + 20px);
+}

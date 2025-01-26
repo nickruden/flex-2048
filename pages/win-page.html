@@ -70,35 +70,35 @@
 
         const rowId = userData.id;
 
-        // fetch(`https://flex.gromkov.ru/api/database/rows/table/602/${rowId}/?user_field_names=true`, {
-        //     method: "PATCH",
-        //     headers: {
-        //         Authorization: "Token EsY3jhdUa4FMCo4GyW0alRmpFSZqjCed",
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         Score: score
-        //     })
-        // })
-        //     .then(response => {
-        //         if (!response.ok) {
-        //             throw new Error("Ошибка при обновлении данных на сервере");
-        //         }
-        //         return response.json();
-        //     })
-        //     .then(data => {
-        //         console.log("Данные успешно обновлены:", data);
-        //     })
-        //     .catch(error => {
-        //         console.error("Ошибка:", error);
-        //         alert("Произошла ошибка при обновлении данных. Пожалуйста, попробуйте еще раз.");
-        //     });
+        fetch(`https://flex.gromkov.ru/api/database/rows/table/602/${rowId}/?user_field_names=true`, {
+            method: "PATCH",
+            headers: {
+                Authorization: "Token EsY3jhdUa4FMCo4GyW0alRmpFSZqjCed",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                Score: score
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Ошибка при обновлении данных на сервере");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Данные успешно обновлены:", data);
+            })
+            .catch(error => {
+                console.error("Ошибка:", error);
+                alert("Произошла ошибка при обновлении данных. Пожалуйста, попробуйте еще раз.");
+            });
 
         document.querySelector('.my-button').addEventListener('click', function (event) {
             event.preventDefault();
 
             if (userData.hasMembership) {
-                window.location.href = './finalPage.html';
+                window.location.href = './final-page.html';
             } else {
                 window.location.href = './card-page.html';
             }

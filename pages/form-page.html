@@ -55,20 +55,27 @@
                         <input type="tel" name="phone-input" id="userPhone" class="my-input" placeholder="Телефон">
                         <div class="my-select-wrapper">
                             <select name="userCity" id="userCity" class="my-select__element">
-                                <option class="my-select__option" value="irkutsk" default>Иркутск</option>
-                                <option class="my-select__option" value="angarsk">Ангарск</option>
-                                <option class="my-select__option" value="krasnoyarskVesni">Красноярск. Весны</option>
-                                <option class="my-select__option" value="krasnoyarskUritskogo">Красноярск. Урицкого
+                                <option class="my-select__option" value="irkutsk" default data-price="5000">Иркутск
                                 </option>
-                                <option class="my-select__option" value="novosibirskZyryanovskaya">Новосибирск.
+                                <option class="my-select__option" value="angarsk" data-price="3000">Ангарск</option>
+                                <option class="my-select__option" value="krasnoyarskVesni" data-price="5000">Красноярск.
+                                    Весны</option>
+                                <option class="my-select__option" value="krasnoyarskUritskogo" data-price="5000">
+                                    Красноярск. Урицкого
+                                </option>
+                                <option class="my-select__option" value="novosibirskZyryanovskaya" data-price="5000">
+                                    Новосибирск.
                                     Зыряновская</option>
-                                <option class="my-select__option" value="novosibirskDusi">Новосибирск. Дуси</option>
-                                <option class="my-select__option" value="tyumen">Тюмень</option>
-                                <option class="my-select__option" value="saratov">Саратов</option>
-                                <option class="my-select__option" value="ekaterinburg">Екатеринбург</option>
-                                <option class="my-select__option" value="ufa">Уфа</option>
-                                <option class="my-select__option" value="chelyabinsk">Челябинск</option>
-                                <option class="my-select__option" value="kazan">Казань</option>
+                                <option class="my-select__option" value="novosibirskDusi" data-price="5000">Новосибирск.
+                                    Дуси</option>
+                                <option class="my-select__option" value="tyumen" data-price="5000">Тюмень</option>
+                                <option class="my-select__option" value="saratov" data-price="5000">Саратов</option>
+                                <option class="my-select__option" value="ekaterinburg" data-price="5000">Екатеринбург
+                                </option>
+                                <option class="my-select__option" value="ufa" data-price="5000">Уфа</option>
+                                <option class="my-select__option" value="chelyabinsk" data-price="5000">Челябинск
+                                </option>
+                                <option class="my-select__option" value="kazan" data-price="5000">Казань</option>
                             </select>
                             <div class="my-select-arrow"></div>
                         </div>
@@ -126,37 +133,49 @@
                 score: null,
             };
 
+            const selectedSity = {
+                city: userData.city,
+                price: +form.querySelector('#userCity').options[form.querySelector('#userCity').selectedIndex].getAttribute("data-price"),
+            }
+
             sessionStorage.setItem("userData", JSON.stringify(userData));
+            sessionStorage.setItem("selectedCity", JSON.stringify(selectedSity));
 
-            window.location.href = './game-page.html';
+            fetch("https://flex.gromkov.ru/api/database/rows/table/602/?user_field_names=true", {
+                method: "POST",
+                headers: {
+                    Authorization: "Token EsY3jhdUa4FMCo4GyW0alRmpFSZqjCed",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    Name: userData.name,
+                    Phone: userData.phone,
+                    Card: userData.hasMembership,
+                    City: userData.city,
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(errorData => {
+                            throw new Error(`Ошибка: ${response.status} ${response.statusText}. ${JSON.stringify(errorData)}`);
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Данные успешно отправлены:", data);
+                    const id = data.id;
+                    userData.id = id;
 
-            // fetch("https://flex.gromkov.ru/api/database/rows/table/602/?user_field_names=true", {
-            //     method: "POST",
-            //     headers: {
-            //         Authorization: "Token EsY3jhdUa4FMCo4GyW0alRmpFSZqjCed",
-            //         "Content-Type": "application/json"
-            //     },
-            //     body: JSON.stringify({ // Преобразуем объект в JSON
-            //         Name: userData.name,
-            //         Phone: userData.phone,
-            //         Card: userData.hasMembership,
-            //         City: userData.city,
-            //     })
-            // })
-            //     .then(response => {
-            //         console.log(response.data)
-            //         // const id = response.data.id;
-            //         // userData.id = id;
+                    sessionStorage.setItem("userData", JSON.stringify(userData));
+                    console.log(JSON.parse(sessionStorage.getItem("userData")));
 
-            //         sessionStorage.setItem("userData", JSON.stringify(userData));
-            //         console.log(JSON.parse(sessionStorage.getItem("userData")));
-
-            //         // window.location.href = './game-page.html';
-            //     })
-            //     .catch(error => {
-            //         console.error('Ошибка при отправке данных:', error);
-            //         alert('Произошла ошибка при отправке данных. Пожалуйста, попробуйте еще раз.');
-            //     });
+                    window.location.href = './game-page.html';
+                })
+                .catch(error => {
+                    console.error('Ошибка при отправке данных:', error);
+                    alert('Произошла ошибка при отправке данных. Пожалуйста, попробуйте еще раз.');
+                });
         });
     </script>
 </body>

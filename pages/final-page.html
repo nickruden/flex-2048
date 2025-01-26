@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex2048</title>
+
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/components/header.css">
+    <link rel="stylesheet" href="../styles/components/desktop-block.css">
+    <link rel="stylesheet" href="../styles/UI/my-button.css">
+
+    <link rel="stylesheet" href="../styles/pages/final-page.css">
+</head>
+
+<body>
+    <div class="wrapper --colored-bg">
+        <div class="header">
+            <div class="my-container header__container">
+                <a href="../index.html" class="header__logo-link">
+                    <div class="header__logo-wrap-img">
+                        <img src="../assets/images/logo.svg" alt="" class="logo-img">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ЗАГЛУШКА ДЛЯ ПК -->
+        <div class="desktop-block">
+            <div class="my-container desktop-block__container">
+                <img src="./assets/images/logo.svg" alt="" class="desktop-block__logo">
+                <div class="desktop-block__text">
+                    Сайт доступен для мобильной версии <br> Откройте сайт на телефоне
+                </div>
+                <div class="desktop-block__icon-wrap">
+                    <img src="../assets/images/desktop-icon.svg" alt="" class="desktop-block__icon">
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="final-page-1" id="finalPage">
+                <div class="my-container final-page-1__container">
+                    <div class="final-page-1__top">
+                        <div class="final-page-1__title">Осталось баллов: <span id="bonusScore">5000</span></div>
+                        <div class="final-page-1__bonus-card" id="bonusCard">
+                            <div class="final-page-1__bonus-card-element">
+                                <div class="final-page-1__bonus-card-element-title">80</div>
+                                <div class="final-page-1__bonus-card-element-text">тренировок</div>
+                            </div>
+                            <div class="final-page-1__bonus-card-element">
+                                <div class="final-page-1__bonus-card-element-title">12</div>
+                                <div class="final-page-1__bonus-card-element-text">месяцев</div>
+                            </div>
+                            <div class="final-page-1__bonus-card-element">
+                                <div class="final-page-1__bonus-card-element-title" id="cardPrice">3990₽</div>
+                                <div class="final-page-1__bonus-card-element-text">в месяц</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="final-page-1__bonuses" id="bonusesContainer">
+                        <!-- <div class="final-page-1__bonus">
+                            <div class="final-page-1__bonus-text">96 тренировок</div>
+                            <button class="my-button final-page-1__bonus-button">1000 баллов</button>
+                        </div>
+                        <div class="final-page-1__bonus">
+                            <div class="final-page-1__bonus-text">Безлимит</div>
+                            <button class="my-button final-page-1__bonus-button">1000 баллов</button>
+                        </div>
+                        <div class="final-page-1__bonus">
+                            <div class="final-page-1__bonus-text">+1 мес к карте</div>
+                            <button class="my-button final-page-1__bonus-button">1000 баллов</button>
+                        </div>
+                        <div class="final-page-1__bonus">
+                            <div class="final-page-1__bonus-text">-50% скидка на ведение нутрициолога</div>
+                            <button class="my-button final-page-1__bonus-button">1000 баллов</button>
+                        </div>
+                        <div class="final-page-1__bonus">
+                            <div class="final-page-1__bonus-text">+5% скидка</div>
+                            <button class="my-button final-page-1__bonus-button">1000 баллов</button>
+                        </div>
+                        <div class="final-page-1__bonus">
+                            <div class="final-page-1__bonus-text">лекция от нутрициолога</div>
+                            <button class="my-button final-page-1__bonus-button">1000 баллов</button>
+                        </div> -->
+                    </div>
+                    <div class="final-page-1__info">Как выберешь подарки, сделай скриншот и&nbsp;отправь его менеджеру
+                        по кнопке ниже</div>
+                    <a href="" class="my-button">поделиться</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const finalPage = document.getElementById("finalPage");
+            const bonusCard = document.getElementById("bonusCard");
+            let bonusScore = document.getElementById("bonusScore");
+            const bonusesContainer = document.getElementById("bonusesContainer");
+            const cardPriceElement = document.getElementById("cardPrice"); // Элемент для отображения цены
+
+            const userData = JSON.parse(sessionStorage.getItem("userData"));
+            const selectedCity = JSON.parse(sessionStorage.getItem("selectedCity")); // Получаем выбранный город
+
+            if (!userData || !selectedCity) {
+                console.error("userData или selectedCity не найдены!");
+                return;
+            }
+
+            console.log(userData);
+            let currentScore = userData.score;
+            bonusScore.textContent = currentScore;
+
+            // Устанавливаем начальную цену из selectedCity
+            let currentPrice = selectedCity.price; // Начальная цена
+            cardPriceElement.textContent = `${currentPrice}₽`; // Отображаем цену с символом рубля
+
+            const bonuses = userData.hasMembership
+                ? [
+                { title: "+2 недели заморозки", points: 20, id: "freeze" },
+                    { title: "Доступ к онлайн-курсу", points: 15, id: "online-course" },
+                    { title: "Абонемент для подруги", points: 25, id: "friend-pass" },
+                    { title: "Лекция от нутрициолога", points: 20, id: "nutritionist-lecture" },
+                    { title: "-30% скидка на ведение нутрициолога", points: 3500, id: "nutritionist-discount" },
+                    { title: "-30% скидка на пакет массажей", points: 3500, id: "massage-discount" },
+                ]
+                : [
+                { title: "96 тренировок", points: 20, id: "96-trainings" },
+                    { title: "Безлимит", points: 35, id: "unlimited" },
+                    { title: "+1 мес к карте", points: 25, id: "extra-month" },
+                    { title: "Консультация нутрициолога", points: 15, id: "nutritionist-consultation" },
+                    { title: "+5% скидка", points: 20, id: "discount" },
+                    { title: "Сеанс массажа", points: 250, id: "massage" },
+                ];
+
+            // Массив для хранения выбранных бонусов
+            let selectedBonuses = [];
+
+            // Элементы, которые нужно обновлять
+            const trainingCountElement = document.querySelector(".final-page-1__bonus-card-element-title");
+            const membershipDurationElement = document.querySelectorAll(".final-page-1__bonus-card-element-title")[1];
+
+            function createBonusCard(bonus) {
+                const card = document.createElement("div");
+                card.classList.add("final-page-1__bonus");
+                card.innerHTML = `
+            <div class="final-page-1__bonus-text">${bonus.title}</div>
+            <button class="my-button final-page-1__bonus-button">${bonus.points} баллов</button>`;
+                return card;
+            }
+
+            // Отрисовка страницы, если пользователь новый
+            if (userData.hasMembership) {
+                finalPage.classList.add("--membership-false");
+
+                const title = document.querySelector(".final-page-1__title");
+                title.textContent = "Ваши бонусы";
+
+                bonusCard.innerHTML = `
+            <div class="final-page-1__bonus-card-element">
+                <div class="final-page-1__bonus-card-element-title">
+                    <span id="bonusScore">${userData.score || "5000"}</span>
+                </div>
+            </div>
+        `;
+
+                // Обновляем ссылку на bonusScore после изменения innerHTML
+                bonusScore = document.getElementById("bonusScore");
+            }
+
+            // Функция для обновления текста на странице
+            function updatePageText() {
+                trainingCountElement.textContent = "80";
+                membershipDurationElement.textContent = "12";
+
+                selectedBonuses.forEach((bonus) => {
+                    switch (bonus.id) {
+                        case "96-trainings":
+                            trainingCountElement.textContent = "96";
+                            break;
+                        case "unlimited":
+                            const infinityImage = document.createElement("img");
+                            infinityImage.src = "../assets/images/infinity.svg";
+                            infinityImage.classList.add("infinity-icon");
+
+                            trainingCountElement.textContent = "";
+                            trainingCountElement.appendChild(infinityImage);
+                            break;
+                        case "extra-month":
+                            membershipDurationElement.textContent = "13";
+                            break;
+                        case "discount":
+                            currentPrice = Math.round(selectedCity.price * 0.95);
+                            cardPriceElement.textContent = `${currentPrice}₽`;
+                            break;
+                    }
+                });
+            }
+
+            // Функция для обновления состояния бонусов
+            function updateBonuses() {
+                bonusesContainer.innerHTML = "";
+                const isUnlimitedSelected = selectedBonuses.some((b) => b.id === "unlimited");
+                const is96TrainingsSelected = selectedBonuses.some((b) => b.id === "96-trainings");
+
+                bonuses.forEach((bonus) => {
+                    const card = createBonusCard(bonus);
+
+                    if (selectedBonuses.includes(bonus)) {
+                        card.classList.add("checked");
+                    }
+
+                    if (bonus.points > currentScore && !selectedBonuses.includes(bonus)) {
+                        card.classList.add("cant-checked");
+                    }
+
+                    // Блокируем "Безлимит", если выбран "96 тренировок", и наоборот
+                    if (
+                        (bonus.id === "unlimited" && is96TrainingsSelected) ||
+                        (bonus.id === "96-trainings" && isUnlimitedSelected)
+                    ) {
+                        card.classList.add("cant-checked");
+                    }
+
+                    card.addEventListener("click", () => {
+                        if (selectedBonuses.includes(bonus)) {
+                            // Если бонус уже выбран, отменяем выбор
+                            selectedBonuses = selectedBonuses.filter((b) => b !== bonus);
+                            currentScore += bonus.points; // Возвращаем баллы
+
+                            // Если отменён бонус "+5% скидка", возвращаем исходную цену
+                            if (bonus.id === "discount") {
+                                currentPrice = selectedCity.price; // Возвращаем исходную цену
+                                cardPriceElement.textContent = `${currentPrice}₽`; // Обновляем цену
+                            }
+                        } else {
+                            // Если бонус не выбран, проверяем взаимоисключение
+                            if ((bonus.id === "unlimited" && is96TrainingsSelected) || (bonus.id === "96-trainings" && isUnlimitedSelected)) {
+                                return;
+                            }
+
+                            // Если бонус не выбран и нет конфликта, добавляем его в выбранные
+                            if (bonus.points <= currentScore) {
+                                selectedBonuses.push(bonus);
+                                currentScore -= bonus.points;
+                            }
+                        }
+
+                        bonusScore.textContent = currentScore;
+                        updatePageText();
+                        updateBonuses();
+                    });
+
+                    bonusesContainer.appendChild(card);
+                });
+            }
+
+            updateBonuses();
+        });
+    </script>
+</body>
+
+</html>

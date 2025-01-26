@@ -55,7 +55,7 @@ setupInput();
 
 // Функция для проверки победы или проигрыша
 function checkWinOrLose() {
-    if (score >= 5048) {
+    if (score >= 5000) {
         sessionStorage.removeItem("score");
         sessionStorage.setItem("score", score);
         window.location.href = "win-page.html";
