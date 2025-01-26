@@ -10,8 +10,8 @@
 
 @font-face {
     font-family: "Inter";  
-    src: url("../assets/fonts/Inter/Inter-SemiBoldItalic.otf") format("opentype"); 
-    font-style: italic; 
+    src: url("../assets/fonts/Inter/Inter-SemiBold.otf") format("opentype"); 
+    font-style: normal; 
     font-weight: 600;
 }
 

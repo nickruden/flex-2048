@@ -12,6 +12,7 @@
 }
 .rules-second-page__number {
     font-family: "Inter";
+    font-style: italic;
     font-size: 80px;
     font-weight: 600;
     letter-spacing: .0em;

@@ -59,14 +59,16 @@
                                 <option class="my-select__option" value="Иркутск" default data-price="3990">Иркутск
                                 </option>
                                 <option class="my-select__option" value="Ангарск" data-price="3099">Ангарск</option>
-                                <option class="my-select__option" value="Красноярск. Весны" data-price="3990">Красноярск.
+                                <option class="my-select__option" value="Красноярск. Весны" data-price="3990">
+                                    Красноярск.
                                     Весны</option>
                                 <option class="my-select__option" value="Красноярск. Урицкого" data-price="3990">
                                     Красноярск. Урицкого
                                 </option>
                                 <option class="my-select__option" value="Новосибирск. Зыряновская" data-price="3990">
                                     Новосибирск. Зыряновская</option>
-                                <option class="my-select__option" value="Новосибирск. Дуси" data-price="3799">Новосибирск. Дуси</option>
+                                <option class="my-select__option" value="Новосибирск. Дуси" data-price="3799">
+                                    Новосибирск. Дуси</option>
                                 <option class="my-select__option" value="Тюмень" data-price="4499">Тюмень</option>
                                 <option class="my-select__option" value="Саратов" data-price="3990">Саратов</option>
                                 <option class="my-select__option" value="Екатеринбург" data-price="3990">Екатеринбург
@@ -86,7 +88,8 @@
                         <label for="agreement" class="my-checkbox">
                             <input type="checkbox" name="agreement" id="agreement" class="my-checkbox__old">
                             <span class="my-checkbox__new"></span>
-                            <span class="my-checkbox__text">Я согласен(а) <a href="my-checkbox__text-link" class="my-checkbox__text-link">с политикой конфиденциальности</a></span>
+                            <span class="my-checkbox__text">Я согласен(а) <a href="my-checkbox__text-link"
+                                    class="my-checkbox__text-link">с политикой конфиденциальности</a></span>
                         </label>
                     </form>
                     <a href="" class="my-button">далее</a>
@@ -112,8 +115,8 @@
         });
 
         agreementCheckbox.addEventListener('change', function () {
-    validateAgreement();
-});
+            validateAgreement();
+        });
 
         function validateName() {
             const value = nameInput.value.trim();
@@ -132,41 +135,41 @@
         }
 
         function validateEmail() {
-        const value = emailInput.value.trim();
-        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            const value = emailInput.value.trim();
+            const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-        if ((!value) || (!regex.test(value))) {
-            emailInput.classList.add('error');
-            emailInput.placeholder = 'Введите правильно';
-            return false;
-        } else {
-            emailInput.classList.remove('error');
-            emailInput.placeholder = 'Email';
-            return true;
+            if ((!value) || (!regex.test(value))) {
+                emailInput.classList.add('error');
+                emailInput.placeholder = 'Введите правильно';
+                return false;
+            } else {
+                emailInput.classList.remove('error');
+                emailInput.placeholder = 'Email';
+                return true;
+            }
         }
-    }
 
-    function validateAgreement() {
-    const agreementLabel = agreementCheckbox.closest('label');
-    if (!agreementCheckbox.checked) {
-        agreementLabel.classList.add('error');
-        return false;
-    } else {
-        agreementLabel.classList.remove('error');
-        return true;
-    }
-}
+        function validateAgreement() {
+            const agreementLabel = agreementCheckbox.closest('label');
+            if (!agreementCheckbox.checked) {
+                agreementLabel.classList.add('error');
+                return false;
+            } else {
+                agreementLabel.classList.remove('error');
+                return true;
+            }
+        }
 
         document.querySelector('.my-button').addEventListener('click', function (event) {
             event.preventDefault();
 
             const isNameValid = validateName();
-    const isEmailValid = validateEmail();
-    const isAgreementValid = validateAgreement();
+            const isEmailValid = validateEmail();
+            const isAgreementValid = validateAgreement();
 
-    if (!isNameValid || !isEmailValid || !isAgreementValid) {
-        return;
-    }
+            if (!isNameValid || !isEmailValid || !isAgreementValid) {
+                return;
+            }
 
             const userData = {
                 id: null,
