@@ -53,29 +53,28 @@
                     <form action="" class="form-page__form">
                         <input type="text" name="name-input" id="userName" class="my-input" placeholder="Имя">
                         <input type="tel" name="phone-input" id="userPhone" class="my-input" placeholder="Телефон">
+                        <input type="tel" name="email-input" id="userEmail" class="my-input" placeholder="Email">
                         <div class="my-select-wrapper">
                             <select name="userCity" id="userCity" class="my-select__element">
-                                <option class="my-select__option" value="irkutsk" default data-price="5000">Иркутск
+                                <option class="my-select__option" value="Иркутск" default data-price="3990">Иркутск
                                 </option>
-                                <option class="my-select__option" value="angarsk" data-price="3000">Ангарск</option>
-                                <option class="my-select__option" value="krasnoyarskVesni" data-price="5000">Красноярск.
+                                <option class="my-select__option" value="Ангарск" data-price="3099">Ангарск</option>
+                                <option class="my-select__option" value="Красноярск. Весны" data-price="3990">Красноярск.
                                     Весны</option>
-                                <option class="my-select__option" value="krasnoyarskUritskogo" data-price="5000">
+                                <option class="my-select__option" value="Красноярск. Урицкого" data-price="3990">
                                     Красноярск. Урицкого
                                 </option>
-                                <option class="my-select__option" value="novosibirskZyryanovskaya" data-price="5000">
-                                    Новосибирск.
-                                    Зыряновская</option>
-                                <option class="my-select__option" value="novosibirskDusi" data-price="5000">Новосибирск.
-                                    Дуси</option>
-                                <option class="my-select__option" value="tyumen" data-price="5000">Тюмень</option>
-                                <option class="my-select__option" value="saratov" data-price="5000">Саратов</option>
-                                <option class="my-select__option" value="ekaterinburg" data-price="5000">Екатеринбург
+                                <option class="my-select__option" value="Новосибирск. Зыряновская" data-price="3990">
+                                    Новосибирск. Зыряновская</option>
+                                <option class="my-select__option" value="Новосибирск. Дуси" data-price="3799">Новосибирск. Дуси</option>
+                                <option class="my-select__option" value="Тюмень" data-price="4499">Тюмень</option>
+                                <option class="my-select__option" value="Саратов" data-price="3990">Саратов</option>
+                                <option class="my-select__option" value="Екатеринбург" data-price="3990">Екатеринбург
                                 </option>
-                                <option class="my-select__option" value="ufa" data-price="5000">Уфа</option>
-                                <option class="my-select__option" value="chelyabinsk" data-price="5000">Челябинск
+                                <option class="my-select__option" value="Уфа" data-price="3990">Уфа</option>
+                                <option class="my-select__option" value="Челябинск" data-price="3990">Челябинск
                                 </option>
-                                <option class="my-select__option" value="kazan" data-price="5000">Казань</option>
+                                <option class="my-select__option" value="Казань" data-price="4499">Казань</option>
                             </select>
                             <div class="my-select-arrow"></div>
                         </div>
@@ -83,6 +82,11 @@
                             <input type="checkbox" name="haveMembership" id="haveMembership" class="my-checkbox__old">
                             <span class="my-checkbox__new"></span>
                             <span class="my-checkbox__text">У меня есть абонемент THE FLEX</span>
+                        </label>
+                        <label for="agreement" class="my-checkbox">
+                            <input type="checkbox" name="agreement" id="agreement" class="my-checkbox__old">
+                            <span class="my-checkbox__new"></span>
+                            <span class="my-checkbox__text">Я согласен(а) <a href="my-checkbox__text-link" class="my-checkbox__text-link">с политикой конфиденциальности</a></span>
                         </label>
                     </form>
                     <a href="" class="my-button">далее</a>
@@ -96,10 +100,20 @@
     <script>
         const form = document.querySelector('.form-page__form');
         const nameInput = document.querySelector('#userName');
+        const emailInput = document.querySelector('#userEmail');
+        const agreementCheckbox = document.querySelector('#agreement');
 
         nameInput.addEventListener('input', function () {
             validateName();
         });
+
+        emailInput.addEventListener('input', function () {
+            validateEmail();
+        });
+
+        agreementCheckbox.addEventListener('change', function () {
+    validateAgreement();
+});
 
         function validateName() {
             const value = nameInput.value.trim();
@@ -117,17 +131,48 @@
             }
         }
 
+        function validateEmail() {
+        const value = emailInput.value.trim();
+        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        if ((!value) || (!regex.test(value))) {
+            emailInput.classList.add('error');
+            emailInput.placeholder = 'Введите правильно';
+            return false;
+        } else {
+            emailInput.classList.remove('error');
+            emailInput.placeholder = 'Email';
+            return true;
+        }
+    }
+
+    function validateAgreement() {
+    const agreementLabel = agreementCheckbox.closest('label');
+    if (!agreementCheckbox.checked) {
+        agreementLabel.classList.add('error');
+        return false;
+    } else {
+        agreementLabel.classList.remove('error');
+        return true;
+    }
+}
+
         document.querySelector('.my-button').addEventListener('click', function (event) {
             event.preventDefault();
 
-            if (!validateName()) {
-                return;
-            }
+            const isNameValid = validateName();
+    const isEmailValid = validateEmail();
+    const isAgreementValid = validateAgreement();
+
+    if (!isNameValid || !isEmailValid || !isAgreementValid) {
+        return;
+    }
 
             const userData = {
                 id: null,
                 name: form.querySelector('#userName').value,
                 phone: form.querySelector('#userPhone').value,
+                email: form.querySelector('#userEmail').value,
                 city: form.querySelector('#userCity').value,
                 hasMembership: form.querySelector('#haveMembership').checked,
                 score: null,
@@ -150,6 +195,7 @@
                 body: JSON.stringify({
                     Name: userData.name,
                     Phone: userData.phone,
+                    Email: userData.email,
                     Card: userData.hasMembership,
                     City: userData.city,
                 })

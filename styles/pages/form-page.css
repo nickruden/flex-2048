@@ -1,5 +1,5 @@
 .form-page {
-    padding-top: 56px;
+    padding-top: 37px;
     padding-bottom: 20px;
 }
 .form-page__container {
@@ -17,14 +17,14 @@
 }
 .form-page__pre-title {
     font-size: 12px;
-    margin-bottom: 28px;
+    margin-bottom: 23px;
 }
 .form-page__form {
-    margin-bottom: 39.4px;
+    margin-bottom: 18.4px;
 }
 .form-page__form >*:not(:last-child):not(.my-select-wrapper) {
     margin-bottom: 10px;
 }
 .my-select-wrapper {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 }
