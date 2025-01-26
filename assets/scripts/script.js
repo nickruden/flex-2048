@@ -7,11 +7,53 @@ const playAgainButton = document.querySelector(".loss-modal__button");
 
 let score = 0; // Инициализация счета
 
+let timeLeft = 10; // Время в секундах
+let timerInterval = null;
+
+function updateTimer() {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  const timerElement = document.getElementById("timer");
+  timerElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+
+  if (timeLeft <= 0) {
+    clearInterval(timerInterval);
+    stopInput();
+    checkWinOrLose(true); // Обработка истечения времени
+  } else {
+    timeLeft--;
+  }
+}
+
+function startTimer() {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
+  timeLeft = 10; // Сбрасываем время
+  updateTimer(); // Обновляем таймер сразу
+  timerInterval = setInterval(updateTimer, 1000); // Запускаем таймер
+}
+
 // Функция для обновления счета
 function updateScore() {
   const scoreElement = document.getElementById("score");
   scoreElement.textContent = score;
 }
+
+function updateScoreWithAnimation(newScore) {
+  const scoreElement = document.getElementById("score");
+  const animationElement = document.getElementById("score-animation");
+
+  animationElement.textContent = `+${newScore - parseInt(scoreElement.textContent)}`;
+  animationElement.classList.add("animate");
+
+  scoreElement.textContent = newScore;
+
+  setTimeout(() => {
+    animationElement.classList.remove("animate");
+  }, 500);
+}
+
 
 // Функция для отображения модального окна проигрыша
 function showLossModal() {
@@ -20,26 +62,31 @@ function showLossModal() {
 
 // Функция для сброса игры
 function resetGame() {
+  console.log(1)
   // Очищаем игровое поле
   gameBoard.innerHTML = "";
+  gameBoard.style.filter = "blur(0px)";
 
   // Сбрасываем счет
   score = 0;
   updateScore();
 
   // Создаем новую сетку и плитки
-  grid = new Grid(gameBoard, updateScore, () => score, (newScore) => { score = newScore; });
+  grid = new Grid(gameBoard, updateScoreWithAnimation, () => score, (newScore) => { score = newScore; });
   grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
   grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 
   // Скрываем модальное окно
   lossModal.style.display = "none";
 
-    // Удаляем старые обработчики событий
-    stopInput();
+  // Удаляем старые обработчики событий
+  stopInput();
 
   // Запускаем игру заново
   setupInput();
+
+  // Сбрасываем и запускаем таймер
+  startTimer();
 }
 
 // Обработчик нажатия на кнопку "Играть"
@@ -48,32 +95,37 @@ playAgainButton.addEventListener("click", resetGame);
 // Инициализация счета при запуске игры
 updateScore();
 
-let grid = new Grid(gameBoard, updateScore, () => score, (newScore) => { score = newScore; });
+let grid = new Grid(gameBoard, updateScoreWithAnimation, () => score, (newScore) => { score = newScore; });
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 setupInput();
+startTimer();
 
 // Функция для проверки победы или проигрыша
-function checkWinOrLose() {
-    if (score >= 5000) {
-        sessionStorage.removeItem("score");
-        sessionStorage.setItem("score", score);
-        window.location.href = "win-page.html";
-    } else if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
-      // Проигрыш, если нет возможных ходов
-      if (score >= 50) {
-        sessionStorage.removeItem("score");
-        sessionStorage.setItem("score", score);
-        window.location.href = "win-page.html";
-      } else {
-        showLossModal();
-      }
+function checkWinOrLose(isTimeOut = false) {
+  if (score >= 5000) {
+    // Если игрок набрал 5000 очков, он выиграл
+    clearInterval(timerInterval); // Останавливаем таймер
+    sessionStorage.removeItem("score");
+    sessionStorage.setItem("score", score);
+    window.location.href = "win-page.html";
+  } else if (isTimeOut || (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight())) {
+    // Если время истекло или нет возможных ходов
+    if (score >= 1000) {
+      clearInterval(timerInterval); // Останавливаем таймер
+      sessionStorage.removeItem("score");
+      sessionStorage.setItem("score", score);
+      window.location.href = "win-page.html";
+    } else {
+      clearInterval(timerInterval); // Останавливаем таймер
+      gameBoard.style.filter = "blur(4px)";
+      showLossModal();
     }
   }
+}
 
 
 function setupInput() {
-      // Удаляем старые обработчики событий
   stopInput();
   window.addEventListener("keydown", handleKeydown, { once: true });
   window.addEventListener("touchstart", handleTouchStart, { once: true, passive: false });

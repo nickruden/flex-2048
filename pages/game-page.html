@@ -48,19 +48,23 @@
                         <div class="game-page__score-wrap">
                             <div class="game-page__score-title">счет</div>
                             <div class="game-page__score-number" id="score">0</div>
+                            <span class="score-animation" id="score-animation"></span>
                         </div>
                     </div>
                     <div class="game-page__game-content">
-                        <div class="game-board" id="game-board"></div>
-                        <div class="loss-modal">
-                            <div class="loss-modal__content">
-                                 <div class="loss-modal__container">
-                                     <div class="loss-modal__text">Упс, попробуй сыграть еще раз, чтобы набрать больше баллов!</div>
-                                     <button class="my-button loss-modal__button">играть</button>
-                                 </div>
-                             </div>
-                             <div class="loss-modal__blur"></div>
-                         </div>
+                        <div class="game-page__game-inner">
+                            <div class="game-board" id="game-board"></div>
+                            <div class="loss-modal">
+                                <div class="loss-modal__content">
+                                    <div class="loss-modal__container">
+                                        <div class="loss-modal__text">Упс, попробуй сыграть еще раз, чтобы набрать больше баллов!</div>
+                                        <button class="my-button loss-modal__button">играть</button>
+                                    </div>
+                                </div>
+                                <div class="loss-modal__blur"></div>
+                            </div>
+                        </div>
+                        <div class="game-page__timer" id="timer">4:53</div>
                     </div>
                 </div>
             </div>

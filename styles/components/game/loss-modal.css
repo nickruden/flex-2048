@@ -6,8 +6,11 @@
     align-items: center;
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     overflow: hidden;
+    max-width: 370px;
+    max-height: 370px;
 }
 .loss-modal__blur {
     position: absolute;
@@ -15,8 +18,7 @@
     left: 0px;
     height: 100%;
     width: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    filter: blur(10px);
+    background: rgba(217, 217, 217, 0.2);
     z-index: 5;
 }
 .loss-modal__content {
@@ -40,4 +42,11 @@
 }
 .loss-modal__button {
     max-width: 135px;
+}
+
+@media (max-width: 374px) {
+    .loss-modal {
+        max-width: 342px;
+        max-height: 342px;
+    }
 }

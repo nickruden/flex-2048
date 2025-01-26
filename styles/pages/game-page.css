@@ -1,6 +1,6 @@
 .game-page {
     padding-top: 42px;
-    padding-bottom: 3px;
+    padding-bottom: 20px;
 }
 .game-page__container {
     padding: 0px 2px;
@@ -47,6 +47,12 @@
 }
 .game-page__game-content .tile {
     flex: 1 1 calc(25% - 10px);
+}
+
+.game-page__timer {
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 12px;
 }
 
 @media (max-width: 374px) {

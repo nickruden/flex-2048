@@ -54,9 +54,9 @@ export class VirtualCell {
     const currentScore = this.getScore();
     const newScore = currentScore + mergedValue;
     this.setScore(newScore);
-    this.updateScore();
+    this.updateScore(newScore);
 
     this.linkedTileForMerge.removeFromDOM();
     this.unlinkTileForMerge();
-    }
   }
+}

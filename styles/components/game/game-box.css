@@ -1,3 +1,7 @@
+.game-page__game-inner {
+    overflow: hidden;
+    border-radius: 10px;
+}
 .game-board {
     /* display: flex;
     flex-wrap: wrap;
@@ -16,6 +20,6 @@
     padding: 10px;
     max-width: 370px;
     width: 100%;
-    background: #FFF;
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
