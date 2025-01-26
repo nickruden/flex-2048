@@ -103,7 +103,7 @@ startTimer();
 
 // Функция для проверки победы или проигрыша
 function checkWinOrLose(isTimeOut = false) {
-  if (score >= 5000) {
+  if (score >= 20) {
     // Если игрок набрал 5000 очков, он выиграл
     clearInterval(timerInterval); // Останавливаем таймер
     sessionStorage.removeItem("score");
@@ -111,7 +111,7 @@ function checkWinOrLose(isTimeOut = false) {
     window.location.href = "win-page.html";
   } else if (isTimeOut || (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight())) {
     // Если время истекло или нет возможных ходов
-    if (score >= 1000) {
+    if (score >= 10) {
       clearInterval(timerInterval); // Останавливаем таймер
       sessionStorage.removeItem("score");
       sessionStorage.setItem("score", score);
