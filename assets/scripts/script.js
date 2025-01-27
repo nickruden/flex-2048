@@ -35,7 +35,7 @@ function showLossModal() {
 
 // Функция для сброса игры
 function resetGame() {
-  console.log(1)
+  alert("Функция работает");
   // Очищаем игровое поле
   gameBoard.innerHTML = "";
   gameBoard.style.filter = "blur(0px)";
