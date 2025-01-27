@@ -35,7 +35,6 @@ function showLossModal() {
 
 // Функция для сброса игры
 function resetGame() {
-  alert("Функция работает");
   // Очищаем игровое поле
   gameBoard.innerHTML = "";
   gameBoard.style.filter = "blur(0px)";
@@ -61,6 +60,7 @@ function resetGame() {
 
 // Обработчик нажатия на кнопку "Играть"
 playAgainButton.addEventListener("click", resetGame);
+playAgainButton.addEventListener("touchstart", resetGame);
 
 // Инициализация счета при запуске игры
 updateScore();
@@ -79,7 +79,7 @@ function checkWinOrLose() {
     window.location.href = "win-page.html";
   } else if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
     // Если время истекло или нет возможных ходов
-    if (score >= 15000) {
+    if (score >= 1500) {
       sessionStorage.removeItem("score");
       sessionStorage.setItem("score", score);
       window.location.href = "win-page.html";
