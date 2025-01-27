@@ -7,33 +7,6 @@ const playAgainButton = document.querySelector(".loss-modal__button");
 
 let score = 0; // Инициализация счета
 
-let timeLeft = 10; // Время в секундах
-let timerInterval = null;
-
-function updateTimer() {
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  const timerElement = document.getElementById("timer");
-  timerElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-
-  if (timeLeft <= 0) {
-    clearInterval(timerInterval);
-    stopInput();
-    checkWinOrLose(true); // Обработка истечения времени
-  } else {
-    timeLeft--;
-  }
-}
-
-function startTimer() {
-  if (timerInterval) {
-    clearInterval(timerInterval);
-  }
-  timeLeft = 10; // Сбрасываем время
-  updateTimer(); // Обновляем таймер сразу
-  timerInterval = setInterval(updateTimer, 1000); // Запускаем таймер
-}
-
 // Функция для обновления счета
 function updateScore() {
   const scoreElement = document.getElementById("score");
@@ -84,9 +57,6 @@ function resetGame() {
 
   // Запускаем игру заново
   setupInput();
-
-  // Сбрасываем и запускаем таймер
-  startTimer();
 }
 
 // Обработчик нажатия на кнопку "Играть"
@@ -99,25 +69,21 @@ let grid = new Grid(gameBoard, updateScoreWithAnimation, () => score, (newScore)
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 grid.getRandomEmptyCell().linkTile(new Tile(gameBoard));
 setupInput();
-startTimer();
 
 // Функция для проверки победы или проигрыша
-function checkWinOrLose(isTimeOut = false) {
-  if (score >= 20) {
+function checkWinOrLose() {
+  if (score >= 5000) {
     // Если игрок набрал 5000 очков, он выиграл
-    clearInterval(timerInterval); // Останавливаем таймер
     sessionStorage.removeItem("score");
     sessionStorage.setItem("score", score);
     window.location.href = "win-page.html";
-  } else if (isTimeOut || (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight())) {
+  } else if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
     // Если время истекло или нет возможных ходов
-    if (score >= 10) {
-      clearInterval(timerInterval); // Останавливаем таймер
+    if (score >= 1000) {
       sessionStorage.removeItem("score");
       sessionStorage.setItem("score", score);
       window.location.href = "win-page.html";
     } else {
-      clearInterval(timerInterval); // Останавливаем таймер
       gameBoard.style.filter = "blur(4px)";
       showLossModal();
     }
