@@ -79,7 +79,7 @@ function checkWinOrLose() {
     window.location.href = "win-page.html";
   } else if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
     // Если время истекло или нет возможных ходов
-    if (score >= 1500) {
+    if (score >= 15000) {
       sessionStorage.removeItem("score");
       sessionStorage.setItem("score", score);
       window.location.href = "win-page.html";
